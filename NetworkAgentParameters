@@ -1,0 +1,56 @@
+# Network Agent Parameters 
+
+class Agent:
+    def __init__(self):
+        self.models = { # $, Kbits/tx, Kbits/tx, km, --, --
+            'SensorNode': {'cost': 0.0, 'dataSize': 0.24, 'gateCommand': 0.28, 'commRange': 0, 'lambda': 2, 'gateCover': 1}, 
+            'Actuator': {'cost': 45.0, 'dataSize': 0.24, 'gateCommand': 0.28, 'commRange': 0.8, 'lambda': 1, 'gateCover': 1}, # Rain Bird CP075 irrigation valve
+            'Router': {'cost': 30.0, 'dataSize': 0.24, 'gateCommand': 0.28, 'commRange': 1, 'lambda': 1, 'gateCover': 1}, # XBee 3 Zigbee Module
+            'Gateway': {'cost': 150.0, 'dataSize': 0, 'gateCommand': 0.28, 'commRange': 1.2, 'lambda': 0, 'gateCover': 1} # Digi XBee Gateway 
+        }
+
+class Box:
+    def __init__(self):
+        self.attributes = { # Hammond 1554F2GYCL, IP67, clear lid, size: 160×90×60 mm
+            'cost': 25,  # USD
+            'volume': 864, # cm3
+            'P': 5,  # number of sensor pins
+            'D': 3, # number of battery docks
+            'C': 4 # number of memory compartments
+        }
+
+class Sensor:
+    def __init__(self, S):
+        # Full dictionary of available sensor models
+        self.availableModels = { # km, cm3, $, sec, Kbits/tx, Kbits/tx, mAh/tx
+            'S1':  {'senseRange': 0.03, 'volume': 0, 'cost': 20.0, 'sensePeriod': 30 * 60, 'dataSize': 0.36, 'gateCommand': 0.3, 'senseEnergy': 0.00028}, # DFRobot Gravity Analog Waterproof Capacitive Soil Moisture Sensor V2
+            'S2':  {'senseRange': 0.03, 'volume': 0, 'cost': 12.0, 'sensePeriod': 30 * 60, 'dataSize': 0.32, 'gateCommand': 0.24, 'senseEnergy': 0.000078}, # SHT31‑D temperature & humidity sensor
+            'S3':  {'senseRange': 0.01,  'volume': 0.92, 'cost': 6.0,  'sensePeriod': 15 * 60, 'dataSize': 0.32, 'gateCommand': 0.24, 'senseEnergy': 0.00006}, # Zio Qwiic TSL2561 Light intensity sensor
+            'S4':  {'senseRange': 0.003, 'volume': 5.6, 'cost': 33.0, 'sensePeriod': 5 * 60, 'dataSize': 0.32, 'gateCommand': 0.24, 'senseEnergy': 0.00066}, # SCD30 (Sensirion CO₂ + Temp + RH) Air quality sensor
+            'S5':  {'senseRange': 0.005,  'volume': 0, 'cost': 2.5,  'sensePeriod': 5, 'dataSize': 0.24, 'gateCommand': 0.24, 'senseEnergy': 0.000028}, # YL‑83 (FC‑37) Rain Sensor Module
+        }
+
+class Battery:
+    def __init__(self):
+        self.models = {  # $, mAh
+            'B1': {'cost': 6, 'capacity': 2400}, # Tadiran TL-5903 3.6V primary battery
+            'B2': {'cost': 8, 'capacity': 3400}  # Panasonic NCR18650B 3.6V rechargable battery
+        }
+
+class Memory:
+    def __init__(self):
+        self.models = { # $, Kbits
+            'M1': {'cost': 2.5, 'capacity': 8 * 8 * 1024}, # Adesto AT45DB641E Flash, 8 MB = 65,536 Kbits
+            'M2': {'cost': 1.5, 'capacity': 1 * 1024} # Microchip 25AA1024 EEPROM, 128 KB = 1,024 Kbits
+        }
+
+class Transceiver:
+    def __init__(self, onePeriod):
+        # Dictionary of available transceiver models
+        self.dutyCycle = 6 # seconds
+        self.models = { # $, km, Kbits/period, mAh/period, mAh/tx, mAh/rx
+            'T1': {'cost': 4.5, 'commRange': 1,  'bandwidth': 250 * onePeriod, 'activeEnergy': 0.00264 * self.dutyCycle, 'txEnergy': 0.0001, 'rxEnergy': 0.000011}, # EFR32MG21 SoC transceiver
+            'T2': {'cost': 2.5, 'commRange': 0.8,  'bandwidth': 250 * onePeriod, 'activeEnergy': 0.00147 * self.dutyCycle, 'txEnergy': 0.000009, 'rxEnergy': 0.000005} # nRF52840 SoC transceiver  
+        }
+
+
