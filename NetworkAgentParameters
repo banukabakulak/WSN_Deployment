@@ -22,7 +22,7 @@ class Box:
 class Sensor:
     def __init__(self, S):
         # Full dictionary of available sensor models
-        self.availableModels = { # km, cm3, $, sec, Kbits/tx, Kbits/tx, mAh/tx
+        self.availableModels = { # km, cm3, $, sec, Kbits/packet, Kbits/tx, mAh/tx
             'S1':  {'senseRange': 0.03, 'volume': 0, 'cost': 20.0, 'sensePeriod': 30 * 60, 'dataSize': 0.36, 'gateCommand': 0.3, 'senseEnergy': 0.00028}, # DFRobot Gravity Analog Waterproof Capacitive Soil Moisture Sensor V2
             'S2':  {'senseRange': 0.03, 'volume': 0, 'cost': 12.0, 'sensePeriod': 30 * 60, 'dataSize': 0.32, 'gateCommand': 0.24, 'senseEnergy': 0.000078}, # SHT31‑D temperature & humidity sensor
             'S3':  {'senseRange': 0.01,  'volume': 0.92, 'cost': 6.0,  'sensePeriod': 15 * 60, 'dataSize': 0.32, 'gateCommand': 0.24, 'senseEnergy': 0.00006}, # Zio Qwiic TSL2561 Light intensity sensor
@@ -48,9 +48,9 @@ class Transceiver:
     def __init__(self, onePeriod):
         # Dictionary of available transceiver models
         self.dutyCycle = 6 # seconds
-        self.models = { # $, km, Kbits/period, mAh/period, mAh/tx, mAh/rx
-            'T1': {'cost': 4.5, 'commRange': 1,  'bandwidth': 250 * onePeriod, 'activeEnergy': 0.00264 * self.dutyCycle, 'txEnergy': 0.0001, 'rxEnergy': 0.000011}, # EFR32MG21 SoC transceiver
-            'T2': {'cost': 2.5, 'commRange': 0.8,  'bandwidth': 250 * onePeriod, 'activeEnergy': 0.00147 * self.dutyCycle, 'txEnergy': 0.000009, 'rxEnergy': 0.000005} # nRF52840 SoC transceiver  
+        self.models = { # $, km, Kbits/period, mAh/period, mAh/Kbits, mAh/Kbits
+            'T1': {'cost': 4.5, 'commRange': 1,  'bandwidth': 250 * onePeriod, 'activeEnergy': 0.00264 * self.dutyCycle, 'txEnergy': 0.1, 'rxEnergy': 0.011}, # EFR32MG21 SoC transceiver
+            'T2': {'cost': 2.5, 'commRange': 0.8,  'bandwidth': 250 * onePeriod, 'activeEnergy': 0.00147 * self.dutyCycle, 'txEnergy': 0.009, 'rxEnergy': 0.005} # nRF52840 SoC transceiver  
         }
 
 
