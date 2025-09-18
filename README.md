@@ -1,2 +1,2 @@
 # WSN_Deployment
-Node Deployment Model for Wireless Sensor Networks 
+Network Agent Deployment Algorithms for Heterogeneous Wireless Sensor Networks 
